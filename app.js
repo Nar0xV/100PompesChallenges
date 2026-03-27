@@ -159,12 +159,13 @@ function completeSession() {
   timerRunning = false;
   todaySessionTime = timerSeconds;
   
-  document.getElementById("btnCancel").addEventListener("click", function() {
-  if(confirm("Annuler aujourd'hui ?")) {
+  // Bouton reset (activé seulement si séance validée)
+document.getElementById("btnCancel").onclick = function() {
+  if(confirm("Reprendre la séance d'aujourd'hui ?")) {
     localStorage.removeItem("pushup_challenge_v1");
     location.reload();
   }
-});
+};
 
 
   renderAll();
@@ -219,6 +220,7 @@ function renderAll() {
     document.getElementById("btnReset").disabled = true;
     document.getElementById("btnComplete").textContent = "✓ SÉANCE VALIDÉE !";
     document.getElementById("btnComplete").disabled = true;
+    document.getElementById("btnCancel").enabled = true;
     document.querySelector(".complete-note").textContent = `Temps : ${formatTime(sessions[today].time || 0)} — Bravo ! 🏆`;
   }
 
