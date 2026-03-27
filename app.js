@@ -162,11 +162,29 @@ function completeSession() {
   renderAll();
 }
 
+
 // –– Annuler/Réinitialiser la journée ––
 function cancelTodaySession() {
   if (!confirm("Annuler la séance d'aujourd'hui ? Chrono et cases seront remis à zéro.")) return;
-  
-  const data
+
+  const data = loadData();
+  const today = getToday();
+
+  // Supprime UNIQUEMENT la séance d'aujourd'hui
+  if (data.sessions && data.sessions[today]) {
+    delete data.sessions[today];
+    saveData(data);
+  }
+
+  // Reset chrono
+  resetTimer();
+
+  // Reset UI
+  renderAll();
+
+  alert("Séance annulée ! Tu peux recommencer.");
+}
+
 
 
 // –– Render global ––
