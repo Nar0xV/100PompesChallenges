@@ -93,8 +93,6 @@ PROGRAM.forEach((serie) => {
 const card = document.createElement(“div”);
 card.className = “serie-card”;
 card.dataset.id = serie.id;
-
-```
 card.innerHTML = `
   <div class="serie-emoji">${serie.emoji}</div>
   <div class="serie-info">
