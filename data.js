@@ -6,7 +6,7 @@
 const PROGRAM = [
   {
     id: 1,
-    name: "Pompes Diamant",
+    name: "10 Pompes Diamant",
     reps: 10,
     emoji: "💎",
     description: "Mains en triangle sous la poitrine — triceps & pec intérieur",
@@ -14,15 +14,15 @@ const PROGRAM = [
   },
   {
     id: 2,
-    name: "Pompes Larges",
-    reps: 15,
+    name: "20 Pompes Larges",
+    reps: 20,
     emoji: "💪",
     description: "Mains écartées au-delà des épaules — grand pectoral",
     muscles: ["Grand pec", "Deltoïde ant."]
   },
   {
     id: 3,
-    name: "Pompes Pieds Surélevés",
+    name: "10 Pompes Pieds Surélevés",
     reps: 10,
     emoji: "🔺",
     description: "Pieds sur une chaise ou marche — pec haut & épaules",
@@ -30,15 +30,15 @@ const PROGRAM = [
   },
   {
     id: 4,
-    name: "Pompes Normales",
-    reps: 20,
+    name: "25 Pompes Normales",
+    reps: 25,
     emoji: "⚡",
     description: "Position classique, mains largeur épaules — full chest",
     muscles: ["Grand pec", "Triceps", "Core"]
   },
   {
     id: 5,
-    name: "Pompes Mains Surélevées",
+    name: "10 Pompes Mains Surélevées",
     reps: 10,
     emoji: "⬇️",
     description: "Mains sur une surface haute — pec bas & sérratus",
@@ -46,7 +46,7 @@ const PROGRAM = [
   },
   {
     id: 6,
-    name: "Pompes Archer",
+    name: "10 Pompes Archer",
     reps: 10,
     emoji: "🏹",
     description: "5 de chaque côté — unilatéral, force & stabilité",
@@ -54,7 +54,7 @@ const PROGRAM = [
   },
   {
     id: 7,
-    name: "Pompes Explosives",
+    name: "10 Pompes Explosives",
     reps: 10,
     emoji: "💥",
     description: "Poussée explosive (clap optionnel) — puissance musculaire",
@@ -62,17 +62,13 @@ const PROGRAM = [
   },
   {
     id: 8,
-    name: "Pompes Sphinx",
+    name: "5 Pompes Sphinx",
     reps: 5,
     emoji: "🐍",
     description: "Coudes au sol → extension complète — triceps longs",
     muscles: ["Triceps long"]
   }
 ];
-
-// Ajustements pour total = 100 pompes
-PROGRAM[3].reps = 25; // Pompes normales
-PROGRAM[1].reps = 20; // Pompes larges
 
 // Challenge mars 2026
 const CHALLENGE_START = new Date("2026-03-27");
