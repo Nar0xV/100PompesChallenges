@@ -3,7 +3,7 @@
 // ============================================================
 
 // –– LocalStorage helpers ––
-const STORAGE_KEY = “pushup_challenge_v1”;
+const STORAGE_KEY = "pushup_challenge_v1”;
 
 function loadData() {
 try {
@@ -41,8 +41,8 @@ return diff;
 }
 
 function formatDate(dateStr) {
-const d = new Date(dateStr + “T00:00:00”);
-return d.toLocaleDateString(“fr-FR”, { weekday: “long”, day: “numeric”, month: “long” });
+const d = new Date(dateStr + "T00:00:00”);
+return d.toLocaleDateString("fr-FR”, { weekday: "long”, day: "numeric”, month: "long” });
 }
 
 // –– Timer ––
@@ -52,8 +52,8 @@ let timerRunning = false;
 let todaySessionTime = 0;
 
 function formatTime(sec) {
-const m = String(Math.floor(sec / 60)).padStart(2, “0”);
-const s = String(sec % 60).padStart(2, “0”);
+const m = String(Math.floor(sec / 60)).padStart(2, "0”);
+const s = String(sec % 60).padStart(2, "0”);
 return `${m}:${s}`;
 }
 
@@ -62,13 +62,13 @@ if (timerRunning) {
 // Pause
 clearInterval(timerInterval);
 timerRunning = false;
-document.getElementById(“btnStart”).textContent = “▶ REPRENDRE”;
+document.getElementById("btnStart”).textContent = "▶ REPRENDRE”;
 } else {
 timerRunning = true;
-document.getElementById(“btnStart”).textContent = “⏸ PAUSE”;
+document.getElementById("btnStart”).textContent = "⏸ PAUSE”;
 timerInterval = setInterval(() => {
 timerSeconds++;
-document.getElementById(“timerDisplay”).textContent = formatTime(timerSeconds);
+document.getElementById("timerDisplay”).textContent = formatTime(timerSeconds);
 }, 1000);
 }
 }
@@ -77,16 +77,16 @@ function resetTimer() {
 clearInterval(timerInterval);
 timerRunning = false;
 timerSeconds = 0;
-document.getElementById(“timerDisplay”).textContent = “00:00”;
-document.getElementById(“btnStart”).textContent = “▶ DÉMARRER”;
+document.getElementById("timerDisplay”).textContent = "00:00”;
+document.getElementById("btnStart”).textContent = "▶ DÉMARRER”;
 }
 
 // –– Séries (checkboxes) ––
 let checkedSeries = new Set();
 
 function buildSeriesGrid(disabled) {
-const grid = document.getElementById(“seriesGrid”);
-grid.innerHTML = “”;
+const grid = document.getElementById("seriesGrid”);
+grid.innerHTML = "”;
 checkedSeries = new Set();
 
 PROGRAM.forEach((serie) => {
@@ -117,22 +117,22 @@ PROGRAM.forEach((serie) => {
 function toggleSerie(id, card) {
 if (checkedSeries.has(id)) {
 checkedSeries.delete(id);
-card.classList.remove(“checked”);
-card.querySelector(”.serie-check”).textContent = “”;
+card.classList.remove("checked");
+card.querySelector(".serie-check").textContent = "";
 } else {
 checkedSeries.add(id);
-card.classList.add(“checked”);
-card.querySelector(”.serie-check”).textContent = “✓”;
+card.classList.add("checked");
+card.querySelector(".serie-check").textContent = "✓";
 }
 updateCompleteBtn();
 }
 
 function updateCompleteBtn() {
-const btn = document.getElementById(“btnComplete”);
+const btn = document.getElementById("btnComplete");
 const allDone = checkedSeries.size === PROGRAM.length;
 btn.disabled = !allDone;
-document.querySelector(”.complete-note”).textContent = allDone
-? “Prêt à valider ! 💪”
+document.querySelector(".complete-note").textContent = allDone
+? "Prêt à valider ! 💪"
 : `${checkedSeries.size}/${PROGRAM.length} séries cochées`;
 }
 
@@ -167,22 +167,22 @@ const today = getToday();
 const sessions = data.sessions || {};
 
 // Header day counter
-const dayEl = document.getElementById(“currentDay”);
+const dayEl = document.getElementById("currentDay”);
 if (!day) {
-dayEl.textContent = “–”;
+dayEl.textContent = "–";
 } else if (day > CHALLENGE_DAYS) {
-dayEl.textContent = “✓”;
+dayEl.textContent = "✓";
 } else {
 dayEl.textContent = day;
 }
 
 // Total complétées
 const totalDone = Object.values(sessions).filter((s) => s.completed).length;
-document.getElementById(“totalDone”).textContent = totalDone;
+document.getElementById("totalDone”).textContent = totalDone;
 
 // Streak
 let streak = 0;
-for (let d = (day || 1) - 1; d >= 1; d–) {
+for (let d = (day || 1) - 1; d >= 1; d--) {
 const key = dateKey(d);
 if (sessions[key]?.completed) {
 streak++;
@@ -190,24 +190,24 @@ streak++;
 break;
 }
 }
-document.getElementById(“streakCount”).textContent = streak;
+document.getElementById("streakCount").textContent = streak;
 const pct = Math.min(100, (streak / 7) * 100);
-document.getElementById(“streakFill”).style.width = pct + “%”;
+document.getElementById("streakFill").style.width = pct + "%”;
 
 // Date du jour
-document.getElementById(“todayDate”).textContent =
-day && day <= CHALLENGE_DAYS ? formatDate(today) : “”;
+document.getElementById("todayDate”).textContent =
+day && day <= CHALLENGE_DAYS ? formatDate(today) : "”;
 
 // Séries
 const todayDone = sessions[today]?.completed;
 buildSeriesGrid(todayDone);
 
 if (todayDone) {
-document.getElementById(“timerDisplay”).textContent = formatTime(sessions[today].time || 0);
-document.getElementById(“btnStart”).disabled = true;
-document.getElementById(“btnReset”).disabled = true;
-document.getElementById(“btnComplete”).textContent = “✓ SÉANCE VALIDÉE !”;
-document.getElementById(“btnComplete”).disabled = true;
+document.getElementById("timerDisplay”).textContent = formatTime(sessions[today].time || 0);
+document.getElementById("btnStart”).disabled = true;
+document.getElementById("btnReset”).disabled = true;
+document.getElementById("btnComplete”).textContent = "✓ SÉANCE VALIDÉE !”;
+document.getElementById("btnComplete”).disabled = true;
 document.querySelector(”.complete-note”).textContent = `Temps : ${formatTime(sessions[today].time || 0)} — Bravo ! 🏆`;
 }
 
@@ -220,8 +220,8 @@ renderChart(sessions);
 
 // –– Calendrier ––
 function renderCalendar(sessions, currentDay) {
-const grid = document.getElementById(“calendarGrid”);
-grid.innerHTML = “”;
+const grid = document.getElementById("calendarGrid”);
+grid.innerHTML = "”;
 
 for (let d = 1; d <= CHALLENGE_DAYS; d++) {
 const key = dateKey(d);
@@ -261,30 +261,30 @@ grid.appendChild(cell);
 
 // –– Graphique simple ––
 function renderChart(sessions) {
-const canvas = document.getElementById(“timeChart”);
-const ctx = canvas.getContext(“2d”);
-const emptyEl = document.getElementById(“chartEmpty”);
+const canvas = document.getElementById("timeChart”);
+const ctx = canvas.getContext("2d”);
+const emptyEl = document.getElementById("chartEmpty”);
 
 const entries = Object.values(sessions)
 .filter((s) => s.completed && s.time > 0)
 .sort((a, b) => a.day - b.day);
 
 if (entries.length === 0) {
-canvas.style.display = “none”;
-emptyEl.style.display = “block”;
+canvas.style.display = "none”;
+emptyEl.style.display = "block”;
 return;
 }
 
-canvas.style.display = “block”;
-emptyEl.style.display = “none”;
+canvas.style.display = "block”;
+emptyEl.style.display = "none”;
 
 // Resize
 const dpr = window.devicePixelRatio || 1;
 const rect = canvas.parentElement.getBoundingClientRect();
 canvas.width = rect.width * dpr;
 canvas.height = 220 * dpr;
-canvas.style.width = rect.width + “px”;
-canvas.style.height = “220px”;
+canvas.style.width = rect.width + "px”;
+canvas.style.height = "220px”;
 ctx.scale(dpr, dpr);
 
 const W = rect.width;
@@ -301,7 +301,7 @@ const rangeT = maxT - minT || 60;
 ctx.clearRect(0, 0, W, H);
 
 // Grille
-ctx.strokeStyle = “rgba(255,255,255,0.06)”;
+ctx.strokeStyle = "rgba(255,255,255,0.06)”;
 ctx.lineWidth = 1;
 for (let i = 0; i <= 4; i++) {
 const y = PAD.top + (chartH / 4) * i;
@@ -329,8 +329,8 @@ return { x, y, entry: e };
 
 // Remplissage sous la courbe
 const grad = ctx.createLinearGradient(0, PAD.top, 0, PAD.top + chartH);
-grad.addColorStop(0, “rgba(255, 75, 43, 0.35)”);
-grad.addColorStop(1, “rgba(255, 75, 43, 0)”);
+grad.addColorStop(0, "rgba(255, 75, 43, 0.35)”);
+grad.addColorStop(1, "rgba(255, 75, 43, 0)”);
 
 ctx.beginPath();
 ctx.moveTo(points[0].x, PAD.top + chartH);
@@ -344,18 +344,18 @@ ctx.fill();
 ctx.beginPath();
 ctx.moveTo(points[0].x, points[0].y);
 points.forEach((p) => ctx.lineTo(p.x, p.y));
-ctx.strokeStyle = “#FF4B2B”;
+ctx.strokeStyle = "#FF4B2B”;
 ctx.lineWidth = 2.5;
-ctx.lineJoin = “round”;
+ctx.lineJoin = "round”;
 ctx.stroke();
 
 // Points
 points.forEach((p) => {
 ctx.beginPath();
 ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
-ctx.fillStyle = “#FF4B2B”;
+ctx.fillStyle = "#FF4B2B”;
 ctx.fill();
-ctx.strokeStyle = “#1a1a1a”;
+ctx.strokeStyle = "#1a1a1a”;
 ctx.lineWidth = 2;
 ctx.stroke();
 
@@ -371,15 +371,15 @@ ctx.fillText(`J${p.entry.day}`, p.x, PAD.top + chartH + 18);
 }
 
 // –– Init ––
-document.getElementById(“btnStart”).addEventListener(“click”, startTimer);
-document.getElementById(“btnReset”).addEventListener(“click”, resetTimer);
-document.getElementById(“btnComplete”).addEventListener(“click”, () => {
-if (confirm(“Valider la séance du jour ? Cette action est définitive.”)) {
+document.getElementById("btnStart”).addEventListener("click”, startTimer);
+document.getElementById("btnReset”).addEventListener("click”, resetTimer);
+document.getElementById("btnComplete”).addEventListener("click”, () => {
+if (confirm("Valider la séance du jour ? Cette action est définitive.”)) {
 completeSession();
 }
 });
 
-window.addEventListener(“resize”, () => {
+window.addEventListener("resize”, () => {
 const data = loadData();
 renderChart(data.sessions || {});
 });
