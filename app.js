@@ -162,6 +162,13 @@ function completeSession() {
   renderAll();
 }
 
+// –– Annuler/Réinitialiser la journée ––
+function cancelTodaySession() {
+  if (!confirm("Annuler la séance d'aujourd'hui ? Chrono et cases seront remis à zéro.")) return;
+  
+  const data
+
+
 // –– Render global ––
 function renderAll() {
   const data = loadData();
