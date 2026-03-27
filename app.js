@@ -220,6 +220,7 @@ function renderAll() {
     document.getElementById("btnComplete").textContent = "✓ SÉANCE VALIDÉE !";
     document.getElementById("btnComplete").disabled = true;
     document.querySelector(".complete-note").textContent = `Temps : ${formatTime(sessions[today].time || 0)} — Bravo ! 🏆`;
+    document.getElementById("btnCancel").enabled = true;
   }
 
   // Calendrier
