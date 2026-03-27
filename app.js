@@ -90,35 +90,29 @@ grid.innerHTML = “”;
 checkedSeries = new Set();
 
 PROGRAM.forEach((serie) => {
-const card = document.createElement(“div”);
-card.className = “serie-card”;
-card.dataset.id = serie.id;
-card.innerHTML = `
-  <div class="serie-emoji">${serie.emoji}</div>
-  <div class="serie-info">
-    <div class="serie-name">${serie.name}</div>
-    <div class="serie-desc">${serie.description}</div>
-    <div class="serie-muscles">${serie.muscles.map((m) => `<span>${m}</span>`).join("")}</div>
-  </div>
-  <div class="serie-reps">${serie.reps}<span>reps</span></div>
-  <button class="serie-check ${disabled ? "disabled" : ""}" data-id="${serie.id}" ${disabled ? "disabled" : ""}>
-    ${disabled ? "✓" : ""}
-  </button>
-`;
+  const card = document.createElement("div");
+  card.className = "serie-card";
+  card.dataset.id = serie.id;
+  card.innerHTML = `
+    <div class="serie-emoji">${serie.emoji}</div>
+    <div class="serie-info">
+      <div class="serie-name">${serie.name}</div>
+      <div class="serie-desc">${serie.description}</div>
+      <div class="serie-muscles">${serie.muscles.map((m) => `<span>${m}</span>`).join("")}</div>
+    </div>
+    <div class="serie-reps">${serie.reps}<span>reps</span></div>
+    <button class="serie-check ${disabled ? "disabled" : ""}" data-id="${serie.id}" ${disabled ? "disabled" : ""}>
+      ${disabled ? "✓" : ""}
+    </button>
+  `;
 
-if (disabled) {
-  card.classList.add("done");
-} else {
-  card.querySelector(".serie-check").addEventListener("click", () => toggleSerie(serie.id, card));
-}
-
-grid.appendChild(card);
-```
-
+  if (disabled) {
+    card.classList.add("done");
+  } else {
+    card.querySelector(".serie-check").addEventListener("click", () => toggleSerie(serie.id, card));
+  }
+  grid.appendChild(card);
 });
-
-updateCompleteBtn();
-}
 
 function toggleSerie(id, card) {
 if (checkedSeries.has(id)) {
