@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>100 POMPES — 30 JOURS</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="noise"></div>
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">100<span>POMPES</span></div>
+      <div class="challenge-tag">30 JOURS · 1 AVRIL → 30 AVRIL</div>
+    </div>
+  </header>
+
+  <!-- HERO / PROGRESSION -->
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="day-counter">
+        <span class="label">JOUR</span>
+        <span class="day-number" id="currentDay">—</span>
+        <span class="day-total">/ 30</span>
+      </div>
+      <div class="streak-bar">
+        <div class="streak-fill" id="streakFill"></div>
+      </div>
+      <div class="streak-label"><span id="streakCount">0</span> jours consécutifs 🔥</div>
+    </div>
+    <div class="hero-right">
+      <div class="big-stat" id="totalDone">0</div>
+      <div class="big-label">SÉANCES COMPLÉTÉES</div>
+    </div>
+  </section>
+
+  <!-- PROGRAMME DU JOUR -->
+
+  <section class="workout-section">
+    <div class="section-header">
+      <h2>PROGRAMME DU JOUR</h2>
+      <div class="date-display" id="todayDate"></div>
+    </div>
+
+```
+<div class="series-grid" id="seriesGrid">
+  <!-- Générée par JS -->
+</div>
+
+<div class="session-footer">
+  <div class="timer-block">
+    <div class="timer-label">TEMPS DE SÉANCE</div>
+    <div class="timer-display" id="timerDisplay">00:00</div>
+    <div class="timer-controls">
+      <button class="btn-timer" id="btnStart">▶ DÉMARRER</button>
+      <button class="btn-timer btn-reset" id="btnReset">↺ RESET</button>
+    </div>
+  </div>
+  <div class="complete-block">
+    <button class="btn-complete" id="btnComplete" disabled>
+      <span class="btn-complete-icon">✓</span>
+      VALIDER LA SÉANCE
+    </button>
+    <div class="complete-note">Coche toutes les séries d'abord</div>
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- CALENDRIER / HISTORIQUE -->
+
+  <section class="history-section">
+    <div class="section-header">
+      <h2>HISTORIQUE AVRIL</h2>
+      <div class="history-legend">
+        <span class="leg done">✓ Fait</span>
+        <span class="leg missed">✗ Raté</span>
+        <span class="leg future">· À venir</span>
+      </div>
+    </div>
+    <div class="calendar-grid" id="calendarGrid"></div>
+  </section>
+
+  <!-- GRAPHIQUE TEMPS -->
+
+  <section class="stats-section">
+    <div class="section-header">
+      <h2>ÉVOLUTION DES TEMPS</h2>
+    </div>
+    <div class="chart-wrapper">
+      <canvas id="timeChart"></canvas>
+      <div class="chart-empty" id="chartEmpty">Pas encore de données. Commence le 1er avril !</div>
+    </div>
+  </section>
+
+  <script src="data.js"></script>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
