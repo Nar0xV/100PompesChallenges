@@ -76,5 +76,5 @@ PROGRAM[3].reps = 25; // Pompes normales → 25 (10+15+10+25+10+10+10+5 = 95, on
 PROGRAM[1].reps = 20; // Pompes larges → 20 (10+20+10+25+10+10+10+5 = 100) ✓
 
 // Date de début du challenge
-const CHALLENGE_START = new Date(“2025-03-27”);
+const CHALLENGE_START = new Date(“2026-03-27”);
 const CHALLENGE_DAYS = 30;
