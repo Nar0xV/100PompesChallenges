@@ -541,3 +541,8 @@ header, .hero, .workout-section, .history-section, .stats-section {
 .workout-section { animation-delay: 0.1s; }
 .history-section { animation-delay: 0.15s; }
 .stats-section { animation-delay: 0.2s; }
+
+.reset-zone { margin-top: 16px; opacity: 0.8; }
+.btn-reset-day {
+  width
+
