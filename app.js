@@ -160,6 +160,9 @@ function completeSession() {
   todaySessionTime = timerSeconds;
   
   document.getElementById("btnCancel").addEventListener("click", function() {
+  if (todayDone) = false;
+    document.getElementById("btnCancel").disabled = true;
+  
   if(confirm("Annuler aujourd'hui ?")) {
     localStorage.removeItem("pushup_challenge_v1");
     location.reload();
