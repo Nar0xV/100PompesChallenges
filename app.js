@@ -220,8 +220,13 @@ function renderAll() {
     document.getElementById("btnReset").disabled = true;
     document.getElementById("btnComplete").textContent = "✓ SÉANCE VALIDÉE !";
     document.getElementById("btnComplete").disabled = true;
-    document.getElementById("btnCancel").disabled = false;
     document.querySelector(".complete-note").textContent = `Temps : ${formatTime(sessions[today].time || 0)} — Bravo ! 🏆`;
+   document.getElementById("btnCancel").disabled = false;
+   document.getElementById("btnCancel").classList.remove("hidden");
+} else {
+  // Bouton reset désactivé
+  document.getElementById("btnCancel").disabled
+
   }
 
   // Calendrier
